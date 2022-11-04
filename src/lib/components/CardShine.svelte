@@ -1,9 +1,9 @@
 <!-- borrowed from <https://github.com/simeydotme/pokemon-cards-css> -->
 
-<div id="buhodev" class="card__shine pointer-events-none" />
+<div class="card__shine pointer-events-none" />
 
 <style>
-	#buhodev.card__shine {
+	.card__shine {
 		display: grid;
 		overflow: hidden;
 		transform: translateZ(1px);
@@ -16,7 +16,7 @@
 		opacity: var(--o);
 	}
 
-	#buhodev.card__shine:after {
+	.card__shine:after {
 		grid-area: 1/1;
 	}
 </style>

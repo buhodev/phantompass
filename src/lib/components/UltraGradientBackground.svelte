@@ -23,7 +23,6 @@
 />
 
 <svg
-	id="buhodev"
 	bind:this={svgRef}
 	viewBox="0 0 1512 982"
 	fill="none"
@@ -108,11 +107,11 @@
 </svg>
 
 <style>
-	:global(body:has(* #buhodev)) {
+	:global(body) {
 		overflow: hidden;
 	}
 
-	svg#buhodev {
+	svg {
 		transform: rotate(180deg) scaleX(-1);
 	}
 </style>

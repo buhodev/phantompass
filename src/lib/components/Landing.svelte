@@ -72,29 +72,29 @@
 </div>
 
 <style>
-	h1#buhodev {
+	h1 {
 		text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.75);
 		font-family: Coanda, sans-serif;
 	}
 
-	#buhodev.primary-button {
+	.primary-button {
 		box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
 			rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
 		transition: box-shadow 0.05s, transform 0.05s;
 		will-change: box-shadow, transform;
 	}
 
-	#buhodev.primary-button:focus {
+	.primary-button:focus {
 		box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
 			rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
 	}
 
-	#buhodev.primary-button:hover {
+	.primary-button:hover {
 		box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
 			#3c4fe0 0 -3px 0 inset;
 	}
 
-	#buhodev.primary-button:active {
+	.primary-button:active {
 		box-shadow: #3c4fe0 0 3px 7px inset;
 	}
 </style>

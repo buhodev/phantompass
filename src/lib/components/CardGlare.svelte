@@ -1,9 +1,9 @@
 <!-- borrowed from <https://github.com/simeydotme/pokemon-cards-css> -->
 
-<div id="buhodev" class="card__glare pointer-events-none" />
+<div class="card__glare pointer-events-none" />
 
 <style>
-	#buhodev.card__glare {
+	.card__glare {
 		transform: translateZ(1px);
 		z-index: 4;
 		background: radial-gradient(

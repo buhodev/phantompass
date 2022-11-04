@@ -324,7 +324,7 @@
 	</div>
 </header>
 
-<div id="buhodev" class="relative container max-w-full overflow-y-scroll">
+<div class="relative container max-w-full overflow-y-scroll">
 	<main class="max-w-md flex flex-col mx-auto text-white pb-8">
 		{#if view === 'generate'}
 			<!-- Password -->
@@ -430,7 +430,7 @@
 				</svg>
 			</button> -->
 			{#if sidebarView === 'password'}
-				<label id="buhodev" for="length" class="mt-10 inline-block w-full">
+				<label for="length" class="mt-10 inline-block w-full">
 					<div class="flex items-center justify-between">
 						<span class="text-neutral-400 text-sm font-medium"
 							>LENGTH: <span class="text-neutral-100 text-base">{length}</span></span
@@ -448,8 +448,7 @@
 					<span class="text-neutral-400 text-sm font-medium">INCLUDE</span>
 					{#each INCLUDE_OPTIONS as { title, id, characters, description } (id)}
 						<label
-							id="buhodev"
-							for={id}
+													for={id}
 							class="border-lg flex w-full cursor-pointer rounded border border-gray-400/20 bg-gray-800/20 p-4 pl-4 text-white transition hover:bg-gray-500/20 hover:text-gray-100"
 						>
 							<!-- TODO: find a better way to align the radio input with the title -->
@@ -476,12 +475,11 @@
 				<button
 					on:click={() =>
 						(password = generatePassword(length, PASSWORD_DEFAULT_OPTIONS, currentSeed))}
-					id="buhodev"
-					class="generate-password relative inline-flex w-full h-12 mt-8 bg-gradient-to-tr from-blue-700 to-sky-400 cursor-pointer touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-md border-0 px-4 text-lg leading-none text-white active:translate-y-[1px]"
+									class="generate-password relative inline-flex w-full h-12 mt-8 bg-gradient-to-tr from-blue-700 to-sky-400 cursor-pointer touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-md border-0 px-4 text-lg leading-none text-white active:translate-y-[1px]"
 					>Generate Password</button
 				>
 			{:else if sidebarView === 'passphrase'}
-				<label id="buhodev" for="length" class="mt-10 inline-block w-full">
+				<label for="length" class="mt-10 inline-block w-full">
 					<div class="flex items-center justify-between">
 						<span class="text-neutral-400 text-sm font-medium"
 							>WORDS: <span class="text-neutral-100 text-base">{PASSPHRASE_OPTIONS.wordsCount}</span
@@ -505,8 +503,7 @@
 				<!-- Generate Passphrase Button -->
 				<button
 					on:click={() => (passphrase = generatePassphrase(PASSPHRASE_OPTIONS))}
-					id="buhodev"
-					class="generate-password relative inline-flex w-full h-12 mt-8 bg-gradient-to-tr from-blue-700 to-sky-400 cursor-pointer touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-md border-0 px-4 text-lg leading-none text-white active:translate-y-[1px]"
+									class="generate-password relative inline-flex w-full h-12 mt-8 bg-gradient-to-tr from-blue-700 to-sky-400 cursor-pointer touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-md border-0 px-4 text-lg leading-none text-white active:translate-y-[1px]"
 					>Generate Passphrase</button
 				>
 			{/if}
@@ -549,8 +546,7 @@
 			<button
 				disabled={!userPassword}
 				on:click={() => (userPasswordScore = generatePasswordScore(userPassword))}
-				id="buhodev"
-				class="generate-password relative inline-flex w-full h-12 mt-8 bg-gradient-to-tr from-blue-700 to-sky-400 cursor-pointer touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-md border-0 px-4 text-lg leading-none text-white active:translate-y-[1px] disabled:cursor-default disabled:translate-y-0"
+							class="generate-password relative inline-flex w-full h-12 mt-8 bg-gradient-to-tr from-blue-700 to-sky-400 cursor-pointer touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-md border-0 px-4 text-lg leading-none text-white active:translate-y-[1px] disabled:cursor-default disabled:translate-y-0"
 				>Check Password</button
 			>
 			{#if userPasswordScore}
@@ -630,8 +626,7 @@
 						<span class="text-neutral-400 text-xs font-medium">ADVANCED OPTIONS</span>
 
 						<label
-							id="buhodev"
-							for="quantityOfCharacters"
+													for="quantityOfCharacters"
 							class="flex items-center justify-between text-sm font-medium text-neutral-100"
 						>
 							Using
@@ -646,8 +641,7 @@
 						</label>
 
 						<label
-							id="buhodev"
-							for="uppercaseLength"
+													for="uppercaseLength"
 							class="flex items-center justify-between text-sm text-neutral-100"
 						>
 							Uppercase
@@ -663,8 +657,7 @@
 							</div>
 						</label>
 						<label
-							id="buhodev"
-							for="uppercaseLength"
+													for="uppercaseLength"
 							class="flex items-center justify-between text-sm text-neutral-100"
 						>
 							Numbers
@@ -680,8 +673,7 @@
 							</div>
 						</label>
 						<label
-							id="buhodev"
-							for="uppercaseLength"
+													for="uppercaseLength"
 							class="flex items-center justify-between text-sm text-neutral-100"
 						>
 							Symbols
@@ -699,8 +691,7 @@
 
 						<div class="flex items-center justify-between space-x-2">
 							<label
-								id="buhodev"
-								for="include-exclude"
+															for="include-exclude"
 								class="text-sm font-medium text-neutral-100"
 							>
 								<select
@@ -713,7 +704,7 @@
 							</label>
 
 							{#if PASSWORD_ADVANCED_OPTIONS.sortOption === 'include'}
-								<label id="buhodev" for="input-include" class="text-sm text-neutral-100 w-full">
+								<label for="input-include" class="text-sm text-neutral-100 w-full">
 									<input
 										bind:value={PASSWORD_ADVANCED_OPTIONS.include}
 										type="text"
@@ -724,7 +715,7 @@
 									/>
 								</label>
 							{:else}
-								<label id="buhodev" for="input-exclude" class="text-sm text-neutral-100 w-full">
+								<label for="input-exclude" class="text-sm text-neutral-100 w-full">
 									<input
 										bind:value={PASSWORD_ADVANCED_OPTIONS.exclude}
 										type="text"
@@ -748,8 +739,7 @@
 						<span class="text-neutral-400 text-xs font-medium">ADVANCED OPTIONS</span>
 
 						<label
-							id="buhodev"
-							for="quantityOfCharacters"
+													for="quantityOfCharacters"
 							class="flex items-center justify-between text-sm font-medium text-neutral-100"
 						>
 							Separator
@@ -771,8 +761,7 @@
 				<div class="px-4 flex flex-col gap-6 w-full mt-4 mb-4">
 					{#each SEED_OPTIONS as { title, id, pill, description } (id)}
 						<label
-							id="buhodev"
-							for={id}
+													for={id}
 							class="border-lg flex w-full cursor-pointer rounded border border-gray-400/20 bg-gray-800/20 p-3 text-white transition hover:bg-gray-500/20 hover:text-gray-100"
 						>
 							<!-- TODO: find a better way to align the radio input with the title -->
@@ -797,8 +786,7 @@
 								<span class="text-gray-200">{description}</span>
 								{#if id === 'manual' && seedType === 'manual'}
 									<label
-										id="buhodev"
-										for="input-manual"
+																			for="input-manual"
 										class="text-sm text-neutral-100 w-full mt-2"
 									>
 										<input
@@ -949,7 +937,7 @@
 		class:pointer-events-none={!isOverlayDimissable}
 		class="absolute flex items-center justify-center bg-black/5 backdrop-blur-xl inset-0 z-[1000]"
 	>
-		<div id="buhodev" class="holo-card m-auto z-[99]">
+		<div class="holo-card m-auto z-[99]">
 			<PasswordCard
 				password={view === 'generate' ? password : userPassword}
 				img={'/gradient_purple.jpg'}
@@ -960,16 +948,16 @@
 {/if}
 
 <style>
-	:global(body:has(* #buhodev)) {
+	:global(body) {
 		background: rgb(23 23 23);
 		overflow-y: hidden;
 	}
 
-	#buhodev.container {
+	.container {
 		height: calc(100% - 48px);
 	}
 
-	#buhodev.container::-webkit-scrollbar {
+	.container::-webkit-scrollbar {
 		display: none;
 	}
 
@@ -985,27 +973,27 @@
 		}
 	} */
 
-	#buhodev.generate-password {
+	.generate-password {
 		box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
 			rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
 		transition: box-shadow 0.05s, transform 0.05s;
 		will-change: box-shadow, transform;
 	}
-	#buhodev.generate-password:focus {
+	.generate-password:focus {
 		box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
 			rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
 	}
 
-	#buhodev.generate-password:hover {
+	.generate-password:hover {
 		box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
 			#3c4fe0 0 -3px 0 inset;
 	}
 
-	#buhodev.generate-password:active {
+	.generate-password:active {
 		box-shadow: #3c4fe0 0 3px 7px inset;
 	}
 
-	#buhodev.generate-password:disabled {
+	.generate-password:disabled {
 		box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
 			rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
 	}
@@ -1015,12 +1003,12 @@
 			url(/grain-dark.png);
 	} */
 
-	label#buhodev:has(input:checked) {
+	label:has(input:checked) {
 		box-shadow: 0 0 0 2px rgb(59 130 246);
 	}
 
-	label#buhodev:has(input[type='checkbox']:focus-visible),
-	label#buhodev:has(input[type='checkbox']:hover) {
+	label:has(input[type='checkbox']:focus-visible),
+	label:has(input[type='checkbox']:hover) {
 		transform: scaleX(1.01) scaleY(1.01);
 	}
 
@@ -1035,13 +1023,13 @@
 	} */
 
 	@media screen and (min-width: 600px) {
-		#buhodev.holo-card {
+		.holo-card {
 			grid-column: 2;
 			grid-row: 2/4;
 		}
 	}
 
-	#buhodev.holo-card {
+	.holo-card {
 		max-width: min(330px, 80vw);
 	}
 </style>
