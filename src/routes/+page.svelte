@@ -1,2 +1,14 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import UltraGradientBackground from "$lib/components/UltraGradientBackground.svelte";
+    import Landing from "$lib/components/Landing.svelte";
+</script>
+
+<UltraGradientBackground />
+<Landing />
+
+<style>
+	@font-face {
+		font-family: "Coanda";
+		src: url(/Coanda.woff2);
+	}
+</style>
