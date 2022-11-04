@@ -940,11 +940,6 @@
 {/if}
 
 <style>
-	:global(body) {
-		background: rgb(23 23 23);
-		overflow-y: hidden;
-	}
-
 	.container {
 		height: calc(100% - 48px);
 	}
