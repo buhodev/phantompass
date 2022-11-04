@@ -1,30 +1,30 @@
-import { highlight } from '$lib/helpers/highlight'
+import { highlight } from '$lib/helpers/highlight';
 
 export function flipboard(node, params) {
-	const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
-	const text = node.innerText.trim()
+	const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+	const text = node.innerText.trim();
 
-	let lastTime = 0
+	let lastTime = 0;
 	return {
 		duration: 1000,
 		...params,
 		tick(t) {
-			const time = Date.now()
-			if (time - lastTime < 32) return
-			lastTime = time
+			const time = Date.now();
+			if (time - lastTime < 32) return;
+			lastTime = time;
 
-			let str = ''
+			let str = '';
 			for (let i = 0; i < text.length; i++) {
-				const progress = i / text.length
+				const progress = i / text.length;
 				if (text[i] === ' ' || progress < t * 0.9) {
-					str += highlight(text[i])
+					str += highlight(text[i]);
 				} else if (progress < t * 1.5) {
-					str += highlight(randomChars[Math.floor(Math.random() * randomChars.length)])
+					str += highlight(randomChars[Math.floor(Math.random() * randomChars.length)]);
 				} else if (progress < t * 2) {
-					str += '-'
+					str += '-';
 				}
 			}
-			node.innerHTML = str
+			node.innerHTML = str;
 		}
-	}
+	};
 }

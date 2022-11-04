@@ -1,12 +1,11 @@
 <!-- Featuring: onChange events, Custom property theming, Tooltip, A11y keyboard controls + attributes, -->
 <script>
-	import Slider from '$lib/components/range-slider/Slider.svelte'
-	let value = 42
-	let theme = 'default'
+	import Slider from '$lib/components/range-slider/Slider.svelte';
+	let value = 42;
+	let theme = 'default';
 </script>
 
 <!-- A basic reference custom range component -->
-
 
 <div class:purple-theme={theme === 'purple'}>
 	<label for="basic-range">Range Label</label>

@@ -1,9 +1,9 @@
 <script>
-	import { onMount } from 'svelte'
-	import { fly } from 'svelte/transition'
+	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
 
-	let ready = false
-	onMount(() => (ready = true))
+	let ready = false;
+	onMount(() => (ready = true));
 
 	const FEATURE_CARDS = [
 		{
@@ -30,14 +30,18 @@
 			svgSrc: '/icons/lordicon/check.svg',
 			webpSrc: '/icons/lordicon/check-long.webp'
 		}
-	]
+	];
 </script>
 
 <div
 	class="max-w-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center mx-auto text-white"
 >
 	{#if ready}
-		<h1 id='buhodev' transition:fly={{ y: -50, duration: 700 }} class="block text-6xl text-center font-bold">
+		<h1
+			id="buhodev"
+			transition:fly={{ y: -50, duration: 700 }}
+			class="block text-6xl text-center font-bold"
+		>
 			Unlock the power of world-class password generation
 		</h1>
 
@@ -59,7 +63,7 @@
 			on:click={() => (ready = false)}
 			transition:fly={{ y: -50, duration: 500, delay: 700 }}
 			href="/app"
-			id='buhodev'
+			id="buhodev"
 			class="primary-button relative mt-8 inline-flex h-12 cursor-pointer touch-manipulation select-none items-center justify-center self-center whitespace-nowrap rounded-lg border-0 bg-blue-600 bg-gradient-to-tr from-blue-700 to-sky-400 py-2 px-12 text-center text-lg leading-none text-white hover:-translate-y-[1px] active:translate-y-[1px]"
 			>Get started</a
 		>

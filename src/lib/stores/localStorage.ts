@@ -24,70 +24,70 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 
-import { writable as internal, get, type Writable } from 'svelte/store'
+import { writable as internal, get, type Writable } from 'svelte/store';
 
-declare type Updater<T> = (value: T) => T
-declare type StoreDict<T> = { [key: string]: Writable<T> }
+declare type Updater<T> = (value: T) => T;
+declare type StoreDict<T> = { [key: string]: Writable<T> };
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const stores: StoreDict<any> = {}
+const stores: StoreDict<any> = {};
 
 interface Serializer<T> {
-	parse(text: string): T
-	stringify(object: T): string
+	parse(text: string): T;
+	stringify(object: T): string;
 }
 
 interface Options<T> {
-	serializer: Serializer<T>
+	serializer: Serializer<T>;
 }
 
 export function writable<T>(key: string, initialValue: T, options?: Options<T>): Writable<T> {
-	const browser = typeof localStorage !== 'undefined' && typeof window !== 'undefined'
-	const serializer = options?.serializer || JSON
+	const browser = typeof localStorage !== 'undefined' && typeof window !== 'undefined';
+	const serializer = options?.serializer || JSON;
 
 	function updateStorage(key: string, value: T) {
-		if (!browser) return
+		if (!browser) return;
 
-		localStorage.setItem(key, serializer.stringify(value))
+		localStorage.setItem(key, serializer.stringify(value));
 	}
 
 	if (!stores[key]) {
 		const store = internal(initialValue, (set) => {
-			const json = browser ? localStorage.getItem(key) : null
+			const json = browser ? localStorage.getItem(key) : null;
 
 			if (json) {
-				set(<T>serializer.parse(json))
+				set(<T>serializer.parse(json));
 			}
 
 			if (browser) {
 				const handleStorage = (event: StorageEvent) => {
 					if (event.key === key) {
-						set(event.newValue ? serializer.parse(event.newValue) : null)
+						set(event.newValue ? serializer.parse(event.newValue) : null);
 					}
-				}
+				};
 
-				window.addEventListener('storage', handleStorage)
+				window.addEventListener('storage', handleStorage);
 
-				return () => window.removeEventListener('storage', handleStorage)
+				return () => window.removeEventListener('storage', handleStorage);
 			}
-		})
+		});
 
-		const { subscribe, set } = store
+		const { subscribe, set } = store;
 
 		stores[key] = {
 			set(value: T) {
-				updateStorage(key, value)
-				set(value)
+				updateStorage(key, value);
+				set(value);
 			},
 			update(updater: Updater<T>) {
-				const value = updater(get(store))
+				const value = updater(get(store));
 
-				updateStorage(key, value)
-				set(value)
+				updateStorage(key, value);
+				set(value);
 			},
 			subscribe
-		}
+		};
 	}
 
-	return stores[key]
+	return stores[key];
 }

@@ -1,24 +1,24 @@
 <script lang="ts">
-	export let password: string
+	export let password: string;
 
 	function getNumberOfDigits(str) {
-		return str.replace(/[^0-9]/g, '').length
+		return str.replace(/[^0-9]/g, '').length;
 	}
 
 	function getNumberOfLowercase(str) {
-		return str.replace(/[^a-z]/g, '').length
+		return str.replace(/[^a-z]/g, '').length;
 	}
 
 	function getNumberOfUppercase(str) {
-		return str.replace(/[^A-Z]/g, '').length
+		return str.replace(/[^A-Z]/g, '').length;
 	}
 
 	function getNumberOfSymbols(str) {
-		return str.replace(/[^`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/g, '').length
+		return str.replace(/[^`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/g, '').length;
 	}
 
 	function calculateHeight(charOcurrences, passwordLength) {
-		return (charOcurrences * 100) / passwordLength
+		return (charOcurrences * 100) / passwordLength;
 	}
 
 	$: numberOfCharacters = {
@@ -26,7 +26,7 @@
 		uppercase: getNumberOfUppercase(password),
 		numbers: getNumberOfDigits(password),
 		symbols: getNumberOfSymbols(password)
-	}
+	};
 </script>
 
 <!-- <div class="flex justify-between items-baseline"> -->

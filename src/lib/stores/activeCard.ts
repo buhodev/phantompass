@@ -1,3 +1,3 @@
-import { writable } from 'svelte/store'
+import { writable } from 'svelte/store';
 
-export const activeCard = writable(undefined)
+export const activeCard = writable(undefined);

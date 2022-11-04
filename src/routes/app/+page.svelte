@@ -1,5 +1,5 @@
 <script>
-    import PasswordGenerator from "$lib/components/PasswordGenerator.svelte";
+	import PasswordGenerator from '$lib/components/PasswordGenerator.svelte';
 </script>
 
-<PasswordGenerator/>
+<PasswordGenerator />

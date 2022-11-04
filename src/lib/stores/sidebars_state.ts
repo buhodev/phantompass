@@ -1,12 +1,12 @@
-import { writable } from '$lib/stores/localStorage'
+import { writable } from '$lib/stores/localStorage';
 
-export const isSidebarOpen = writable('isSidebarOpen', true)
-export const isHistoryOpen = writable('isHistoryOpen', true)
+export const isSidebarOpen = writable('isSidebarOpen', true);
+export const isHistoryOpen = writable('isHistoryOpen', true);
 
 export const toggleSidebar = () => {
-	isSidebarOpen.update((state) => !state)
-}
+	isSidebarOpen.update((state) => !state);
+};
 
 export const toggleHistory = () => {
-	isHistoryOpen.update((state) => !state)
-}
+	isHistoryOpen.update((state) => !state);
+};

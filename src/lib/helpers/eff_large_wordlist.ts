@@ -7777,4 +7777,4 @@ export const LARGE_WORDLIST = {
 	66664: 'zoologist',
 	66665: 'zoology',
 	66666: 'zoom'
-}
+};

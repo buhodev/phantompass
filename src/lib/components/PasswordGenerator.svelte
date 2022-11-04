@@ -1,52 +1,49 @@
 <script lang="ts">
-	import Badge from '$lib/components/Badge.svelte'
+	import Badge from '$lib/components/Badge.svelte';
 
-	import { fade, fly } from 'svelte/transition'
-	import { flipboard } from '$lib/transitions/flipboard'
-	import { backOut, quadOut, quadIn } from 'svelte/easing'
+	import { fade, fly } from 'svelte/transition';
+	import { flipboard } from '$lib/transitions/flipboard';
+	import { backOut, quadOut, quadIn } from 'svelte/easing';
 	import {
 		generatePassword,
 		type PasswordDefaultOptions,
 		type PasswordAdvancedOptions
-	} from '$lib/helpers/generate_password'
-	import {
-		generatePassphrase,
-		type PassphraseOptions
-	} from '$lib/helpers/generate_passphrase'
-	import { copyToClipboard } from '$lib/actions/copy_to_clipboard'
-	import { highlight } from '$lib/helpers/highlight'
-	import Toasts from '$lib/components/Toasts.svelte'
-	import { addToast } from '$lib/stores/toast'
-	import { savedPasswords, addPassword, clearAll } from '$lib/stores/history'
+	} from '$lib/helpers/generate_password';
+	import { generatePassphrase, type PassphraseOptions } from '$lib/helpers/generate_passphrase';
+	import { copyToClipboard } from '$lib/actions/copy_to_clipboard';
+	import { highlight } from '$lib/helpers/highlight';
+	import Toasts from '$lib/components/Toasts.svelte';
+	import { addToast } from '$lib/stores/toast';
+	import { savedPasswords, addPassword, clearAll } from '$lib/stores/history';
 	import {
 		isSidebarOpen,
 		isHistoryOpen,
 		toggleSidebar,
 		toggleHistory
-	} from '$lib/stores/sidebars_state'
-	import PasswordEntry from '$lib/components/PasswordEntry.svelte'
-	import PasswordCard from '$lib/components/HoloCard.svelte'
-	import { generateDate } from '$lib/helpers/generate_date'
-	import BarChart from '$lib/components/BarChart.svelte'
-	import { generatePasswordScore } from '$lib/helpers/generate_password_score'
-	import SeedGenerator from '$lib/components/SeedGenerator.svelte'
+	} from '$lib/stores/sidebars_state';
+	import PasswordEntry from '$lib/components/PasswordEntry.svelte';
+	import PasswordCard from '$lib/components/HoloCard.svelte';
+	import { generateDate } from '$lib/helpers/generate_date';
+	import BarChart from '$lib/components/BarChart.svelte';
+	import { generatePasswordScore } from '$lib/helpers/generate_password_score';
+	import SeedGenerator from '$lib/components/SeedGenerator.svelte';
 
-	let isCopied = false
-	let animate = true
-	let animation = 'fly'
-	let length = 12
-	let seedType: 'pseudo' | 'date' | 'manual' | 'mouse' = 'pseudo'
+	let isCopied = false;
+	let animate = true;
+	let animation = 'fly';
+	let length = 12;
+	let seedType: 'pseudo' | 'date' | 'manual' | 'mouse' = 'pseudo';
 
-	let currentSeed = ''
-	let manualSeed = ''
-	let mouseSeed = ''
+	let currentSeed = '';
+	let manualSeed = '';
+	let mouseSeed = '';
 
-	let view: 'generate' | 'check' = 'generate'
-	let sidebarView: 'password' | 'passphrase' = 'password'
-	let hasEllipsis = false
-	let showEasterEgg = false
-	let showSeedGenerator = false
-	let isOverlayDimissable = false
+	let view: 'generate' | 'check' = 'generate';
+	let sidebarView: 'password' | 'passphrase' = 'password';
+	let hasEllipsis = false;
+	let showEasterEgg = false;
+	let showSeedGenerator = false;
+	let isOverlayDimissable = false;
 
 	const INCLUDE_OPTIONS = [
 		{
@@ -73,7 +70,7 @@
 			characters: '@#$%^&*',
 			description: 'Include unicode characters from position 33 to 38, 42, 64, and 94.'
 		}
-	]
+	];
 
 	const SEPARATOR_OPTIONS = [
 		{
@@ -100,7 +97,7 @@
 			title: 'Slashes',
 			id: '/'
 		}
-	]
+	];
 
 	const SEED_OPTIONS = [
 		{
@@ -127,14 +124,14 @@
 			pill: 'Pro',
 			description: 'Generate the seed with your mouse movements.'
 		}
-	]
+	];
 
 	const PASSWORD_DEFAULT_OPTIONS: PasswordDefaultOptions = {
 		uppercase: true,
 		lowercase: true,
 		numbers: true,
 		symbols: true
-	}
+	};
 
 	const PASSWORD_ADVANCED_OPTIONS: PasswordAdvancedOptions = {
 		using: 'minimum',
@@ -143,58 +140,59 @@
 		exclude: '',
 		sortOption: 'include',
 		seed: currentSeed
-	}
+	};
 
 	const PASSPHRASE_OPTIONS: PassphraseOptions = {
 		wordsCount: 3,
 		wordList: 'short',
 		separator: '-'
-	}
+	};
 
 	function handleSuccessfulCopy() {
-		isCopied = true
-		addToast({ message: 'Copied', type: 'info', dismissible: false, timeout: 3000 })
-		setTimeout(() => (isCopied = false), 1000)
+		isCopied = true;
+		addToast({ message: 'Copied', type: 'info', dismissible: false, timeout: 3000 });
+		setTimeout(() => (isCopied = false), 1000);
 	}
 
 	function handleSave() {
 		if (view === 'generate') {
-			if (sidebarView === 'password') addPassword({ password: password, generated: generateDate() })
+			if (sidebarView === 'password')
+				addPassword({ password: password, generated: generateDate() });
 			if (sidebarView === 'passphrase')
-				addPassword({ password: passphrase, generated: generateDate() })
+				addPassword({ password: passphrase, generated: generateDate() });
 		} else if (view === 'check' && userPassword) {
-			addPassword({ password: userPassword, generated: generateDate() })
+			addPassword({ password: userPassword, generated: generateDate() });
 		} else {
-			addToast({ message: "You can't save an empty password", type: 'info', timeout: 3000 })
+			addToast({ message: "You can't save an empty password", type: 'info', timeout: 3000 });
 		}
 	}
 
 	function handleClear() {
 		if ($savedPasswords[0] !== undefined) {
-			clearAll()
+			clearAll();
 		} else {
-			addToast({ message: 'There are no passwords to clear', type: 'info', timeout: 3000 })
+			addToast({ message: 'There are no passwords to clear', type: 'info', timeout: 3000 });
 		}
 	}
 
 	function delayUntilDimiss() {
-		setTimeout(() => (isOverlayDimissable = true), 500)
+		setTimeout(() => (isOverlayDimissable = true), 500);
 	}
 
 	function updateEasterEggCount() {
-		setTimeout(() => (easterEggState.count = 1), 1000)
+		setTimeout(() => (easterEggState.count = 1), 1000);
 
 		if (password === easterEggState.lastPassword) {
-			easterEggState.count++
+			easterEggState.count++;
 		} else {
-			easterEggState.count = 1
+			easterEggState.count = 1;
 		}
 		if (easterEggState.count >= 5) {
-			easterEggState.count = 1
-			showEasterEgg = true
-			delayUntilDimiss()
+			easterEggState.count = 1;
+			showEasterEgg = true;
+			delayUntilDimiss();
 		}
-		easterEggState.lastPassword = password
+		easterEggState.lastPassword = password;
 	}
 
 	$: if (
@@ -203,30 +201,30 @@
 		PASSWORD_DEFAULT_OPTIONS.numbers === false &&
 		PASSWORD_DEFAULT_OPTIONS.symbols === false
 	) {
-		PASSWORD_DEFAULT_OPTIONS.lowercase = true
+		PASSWORD_DEFAULT_OPTIONS.lowercase = true;
 	}
 
 	$: if (seedType === 'mouse' && !mouseSeed.length) {
-		showSeedGenerator = true
+		showSeedGenerator = true;
 	} else if (seedType === 'mouse' && mouseSeed.length === 36) {
-		setTimeout(() => (showSeedGenerator = false), 1000)
+		setTimeout(() => (showSeedGenerator = false), 1000);
 		// this avoidsP sending the toast notification when deselecting and selecting again seedType = 'mouse' on the UI
 		if (showSeedGenerator === true) {
 			setTimeout(
 				() => addToast({ message: 'Matrix seed generated', type: 'info', timeout: 3000 }),
 				1500
-			)
+			);
 		}
 	}
 
 	$: if (seedType === 'date') {
-		currentSeed = Date.now().toString()
+		currentSeed = Date.now().toString();
 	} else if (seedType === 'manual') {
-		currentSeed = manualSeed
+		currentSeed = manualSeed;
 	} else if (seedType === 'mouse') {
-		currentSeed = mouseSeed
+		currentSeed = mouseSeed;
 	} else {
-		currentSeed = ''
+		currentSeed = '';
 	}
 
 	$: password = generatePassword(
@@ -234,28 +232,28 @@
 		PASSWORD_DEFAULT_OPTIONS,
 		PASSWORD_ADVANCED_OPTIONS,
 		currentSeed
-	)
+	);
 	$: highlighted_password = highlight(
 		generatePassword(length, PASSWORD_DEFAULT_OPTIONS, PASSWORD_ADVANCED_OPTIONS, currentSeed)
-	)
-	$: passphrase = generatePassphrase(PASSPHRASE_OPTIONS, currentSeed)
-	$: highlighted_passphrase = highlight(generatePassphrase(PASSPHRASE_OPTIONS, currentSeed))
-	let userPassword = ''
+	);
+	$: passphrase = generatePassphrase(PASSPHRASE_OPTIONS, currentSeed);
+	$: highlighted_passphrase = highlight(generatePassphrase(PASSPHRASE_OPTIONS, currentSeed));
+	let userPassword = '';
 
 	$: {
-		view
-		hasEllipsis = false
-		length
-		password
-		passphrase
-		setTimeout(() => (hasEllipsis = true), 360)
+		view;
+		hasEllipsis = false;
+		length;
+		password;
+		passphrase;
+		setTimeout(() => (hasEllipsis = true), 360);
 	}
 
-	$: passwordScore = generatePasswordScore(password)
-	$: passphraseScore = generatePasswordScore(passphrase)
-	let userPasswordScore
+	$: passwordScore = generatePasswordScore(password);
+	$: passphraseScore = generatePasswordScore(passphrase);
+	let userPasswordScore;
 
-	let easterEggState = { lastPassword: view === 'generate' ? password : userPassword, count: 1 }
+	let easterEggState = { lastPassword: view === 'generate' ? password : userPassword, count: 1 };
 </script>
 
 <Toasts />
@@ -448,7 +446,7 @@
 					<span class="text-neutral-400 text-sm font-medium">INCLUDE</span>
 					{#each INCLUDE_OPTIONS as { title, id, characters, description } (id)}
 						<label
-													for={id}
+							for={id}
 							class="border-lg flex w-full cursor-pointer rounded border border-gray-400/20 bg-gray-800/20 p-4 pl-4 text-white transition hover:bg-gray-500/20 hover:text-gray-100"
 						>
 							<!-- TODO: find a better way to align the radio input with the title -->
@@ -475,7 +473,7 @@
 				<button
 					on:click={() =>
 						(password = generatePassword(length, PASSWORD_DEFAULT_OPTIONS, currentSeed))}
-									class="generate-password relative inline-flex w-full h-12 mt-8 bg-gradient-to-tr from-blue-700 to-sky-400 cursor-pointer touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-md border-0 px-4 text-lg leading-none text-white active:translate-y-[1px]"
+					class="generate-password relative inline-flex w-full h-12 mt-8 bg-gradient-to-tr from-blue-700 to-sky-400 cursor-pointer touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-md border-0 px-4 text-lg leading-none text-white active:translate-y-[1px]"
 					>Generate Password</button
 				>
 			{:else if sidebarView === 'passphrase'}
@@ -503,7 +501,7 @@
 				<!-- Generate Passphrase Button -->
 				<button
 					on:click={() => (passphrase = generatePassphrase(PASSPHRASE_OPTIONS))}
-									class="generate-password relative inline-flex w-full h-12 mt-8 bg-gradient-to-tr from-blue-700 to-sky-400 cursor-pointer touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-md border-0 px-4 text-lg leading-none text-white active:translate-y-[1px]"
+					class="generate-password relative inline-flex w-full h-12 mt-8 bg-gradient-to-tr from-blue-700 to-sky-400 cursor-pointer touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-md border-0 px-4 text-lg leading-none text-white active:translate-y-[1px]"
 					>Generate Passphrase</button
 				>
 			{/if}
@@ -546,7 +544,7 @@
 			<button
 				disabled={!userPassword}
 				on:click={() => (userPasswordScore = generatePasswordScore(userPassword))}
-							class="generate-password relative inline-flex w-full h-12 mt-8 bg-gradient-to-tr from-blue-700 to-sky-400 cursor-pointer touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-md border-0 px-4 text-lg leading-none text-white active:translate-y-[1px] disabled:cursor-default disabled:translate-y-0"
+				class="generate-password relative inline-flex w-full h-12 mt-8 bg-gradient-to-tr from-blue-700 to-sky-400 cursor-pointer touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-md border-0 px-4 text-lg leading-none text-white active:translate-y-[1px] disabled:cursor-default disabled:translate-y-0"
 				>Check Password</button
 			>
 			{#if userPasswordScore}
@@ -626,7 +624,7 @@
 						<span class="text-neutral-400 text-xs font-medium">ADVANCED OPTIONS</span>
 
 						<label
-													for="quantityOfCharacters"
+							for="quantityOfCharacters"
 							class="flex items-center justify-between text-sm font-medium text-neutral-100"
 						>
 							Using
@@ -641,7 +639,7 @@
 						</label>
 
 						<label
-													for="uppercaseLength"
+							for="uppercaseLength"
 							class="flex items-center justify-between text-sm text-neutral-100"
 						>
 							Uppercase
@@ -657,7 +655,7 @@
 							</div>
 						</label>
 						<label
-													for="uppercaseLength"
+							for="uppercaseLength"
 							class="flex items-center justify-between text-sm text-neutral-100"
 						>
 							Numbers
@@ -673,7 +671,7 @@
 							</div>
 						</label>
 						<label
-													for="uppercaseLength"
+							for="uppercaseLength"
 							class="flex items-center justify-between text-sm text-neutral-100"
 						>
 							Symbols
@@ -690,10 +688,7 @@
 						</label>
 
 						<div class="flex items-center justify-between space-x-2">
-							<label
-															for="include-exclude"
-								class="text-sm font-medium text-neutral-100"
-							>
+							<label for="include-exclude" class="text-sm font-medium text-neutral-100">
 								<select
 									id="include-exclude"
 									class="border text-sm rounded-lg px-1.5 py-1 font-normal bg-neutral-800 border-neutral-600 placeholder-neutral-400 text-white focus:ring-blue-500 focus:border-blue-500"
@@ -739,7 +734,7 @@
 						<span class="text-neutral-400 text-xs font-medium">ADVANCED OPTIONS</span>
 
 						<label
-													for="quantityOfCharacters"
+							for="quantityOfCharacters"
 							class="flex items-center justify-between text-sm font-medium text-neutral-100"
 						>
 							Separator
@@ -761,7 +756,7 @@
 				<div class="px-4 flex flex-col gap-6 w-full mt-4 mb-4">
 					{#each SEED_OPTIONS as { title, id, pill, description } (id)}
 						<label
-													for={id}
+							for={id}
 							class="border-lg flex w-full cursor-pointer rounded border border-gray-400/20 bg-gray-800/20 p-3 text-white transition hover:bg-gray-500/20 hover:text-gray-100"
 						>
 							<!-- TODO: find a better way to align the radio input with the title -->
@@ -785,10 +780,7 @@
 								</div>
 								<span class="text-gray-200">{description}</span>
 								{#if id === 'manual' && seedType === 'manual'}
-									<label
-																			for="input-manual"
-										class="text-sm text-neutral-100 w-full mt-2"
-									>
+									<label for="input-manual" class="text-sm text-neutral-100 w-full mt-2">
 										<input
 											type="text"
 											name=""
@@ -916,7 +908,7 @@
 {#if showSeedGenerator}
 	<div
 		on:click|self={() => {
-			showSeedGenerator = false
+			showSeedGenerator = false;
 		}}
 		transition:fade={{ duration: 200 }}
 		class="absolute flex items-center justify-center bg-black/5 backdrop-blur-xl inset-0 z-[1000]"
@@ -930,8 +922,8 @@
 {#if showEasterEgg}
 	<div
 		on:click|self={() => {
-			showEasterEgg = false
-			isOverlayDimissable = false
+			showEasterEgg = false;
+			isOverlayDimissable = false;
 		}}
 		transition:fade={{ duration: 200 }}
 		class:pointer-events-none={!isOverlayDimissable}

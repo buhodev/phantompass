@@ -7,21 +7,21 @@ import {
 	LOWERCASE,
 	UPPERCASE,
 	SYMBOLS
-} from '$lib/helpers/regexes'
-import { getEntropy } from '$lib/helpers/get_entropy'
+} from '$lib/helpers/regexes';
+import { getEntropy } from '$lib/helpers/get_entropy';
 
 type PasswordScore = {
-	password: string | number
-	warning: string
-	type: 'num' | 'lower' | 'lowerUpper' | 'numLowerUpper' | 'numLowerUpperSym'
-	timeToCrack: string
-	strength: 'lowest' | 'low' | 'medium' | 'high' | 'highest'
-	score: 0 | 1 | 2 | 3 | 4
-	entropy: number
-}
+	password: string | number;
+	warning: string;
+	type: 'num' | 'lower' | 'lowerUpper' | 'numLowerUpper' | 'numLowerUpperSym';
+	timeToCrack: string;
+	strength: 'lowest' | 'low' | 'medium' | 'high' | 'highest';
+	score: 0 | 1 | 2 | 3 | 4;
+	entropy: number;
+};
 
 export function generatePasswordScore(password) {
-	const entropy = getEntropy(password)
+	const entropy = getEntropy(password);
 
 	// Numbers only
 	const numbers = (length: number): PasswordScore => {
@@ -34,7 +34,7 @@ export function generatePasswordScore(password) {
 				strength: 'lowest',
 				score: 0,
 				entropy
-			}
+			};
 		}
 		if (length < 12) {
 			return {
@@ -45,7 +45,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 13) {
 			return {
@@ -56,7 +56,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 14) {
 			return {
@@ -67,7 +67,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 15) {
 			return {
@@ -78,7 +78,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 16) {
 			return {
@@ -89,7 +89,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 17) {
 			return {
@@ -100,7 +100,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 18) {
 			return {
@@ -111,7 +111,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 19) {
 			return {
@@ -122,7 +122,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		return {
 			password,
@@ -132,8 +132,8 @@ export function generatePasswordScore(password) {
 			strength: 'low',
 			score: 1,
 			entropy
-		}
-	}
+		};
+	};
 	// Lowecase letters
 	const lower = (length: number) => {
 		if (length < 8) {
@@ -145,7 +145,7 @@ export function generatePasswordScore(password) {
 				strength: 'lowest',
 				score: 0,
 				entropy
-			}
+			};
 		}
 		if (length < 9) {
 			return {
@@ -156,7 +156,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 10) {
 			return {
@@ -167,7 +167,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 11) {
 			return {
@@ -178,7 +178,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 12) {
 			return {
@@ -189,7 +189,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 13) {
 			return {
@@ -200,7 +200,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 14) {
 			return {
@@ -211,7 +211,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 15) {
 			return {
@@ -222,7 +222,7 @@ export function generatePasswordScore(password) {
 				strength: 'medium',
 				score: 2,
 				entropy
-			}
+			};
 		}
 		if (length < 16) {
 			return {
@@ -233,7 +233,7 @@ export function generatePasswordScore(password) {
 				strength: 'medium',
 				score: 2,
 				entropy
-			}
+			};
 		}
 		if (length < 17) {
 			return {
@@ -244,7 +244,7 @@ export function generatePasswordScore(password) {
 				strength: 'medium',
 				score: 2,
 				entropy
-			}
+			};
 		}
 		if (length < 18) {
 			return {
@@ -255,7 +255,7 @@ export function generatePasswordScore(password) {
 				strength: 'high',
 				score: 3,
 				entropy
-			}
+			};
 		}
 		if (length < 19) {
 			return {
@@ -266,7 +266,7 @@ export function generatePasswordScore(password) {
 				strength: 'high',
 				score: 3,
 				entropy
-			}
+			};
 		}
 		return {
 			password,
@@ -276,8 +276,8 @@ export function generatePasswordScore(password) {
 			strength: 'highest',
 			score: 4,
 			entropy
-		}
-	}
+		};
+	};
 	// Upper and lowercase letter
 	const lowerUpper = (length: number) => {
 		if (length < 7) {
@@ -289,7 +289,7 @@ export function generatePasswordScore(password) {
 				strength: 'lowest',
 				score: 0,
 				entropy
-			}
+			};
 		}
 		if (length < 8) {
 			return {
@@ -300,7 +300,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 9) {
 			return {
@@ -311,7 +311,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 10) {
 			return {
@@ -322,7 +322,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 11) {
 			return {
@@ -333,7 +333,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 12) {
 			return {
@@ -344,7 +344,7 @@ export function generatePasswordScore(password) {
 				strength: 'medium',
 				score: 2,
 				entropy
-			}
+			};
 		}
 		if (length < 13) {
 			return {
@@ -355,7 +355,7 @@ export function generatePasswordScore(password) {
 				strength: 'medium',
 				score: 2,
 				entropy
-			}
+			};
 		}
 		if (length < 14) {
 			return {
@@ -366,7 +366,7 @@ export function generatePasswordScore(password) {
 				strength: 'medium',
 				score: 2,
 				entropy
-			}
+			};
 		}
 		if (length < 15) {
 			return {
@@ -377,7 +377,7 @@ export function generatePasswordScore(password) {
 				strength: 'high',
 				score: 3,
 				entropy
-			}
+			};
 		}
 		if (length < 16) {
 			return {
@@ -388,7 +388,7 @@ export function generatePasswordScore(password) {
 				strength: 'high',
 				score: 3,
 				entropy
-			}
+			};
 		}
 		if (length < 17) {
 			return {
@@ -399,7 +399,7 @@ export function generatePasswordScore(password) {
 				strength: 'high',
 				score: 3,
 				entropy
-			}
+			};
 		}
 		if (length < 18) {
 			return {
@@ -410,7 +410,7 @@ export function generatePasswordScore(password) {
 				strength: 'highest',
 				score: 4,
 				entropy
-			}
+			};
 		}
 		if (length < 19) {
 			return {
@@ -421,7 +421,7 @@ export function generatePasswordScore(password) {
 				strength: 'highest',
 				score: 4,
 				entropy
-			}
+			};
 		}
 		return {
 			password,
@@ -431,8 +431,8 @@ export function generatePasswordScore(password) {
 			strength: 'highest',
 			score: 4,
 			entropy
-		}
-	}
+		};
+	};
 	// Numbers, upper and lowercase letter
 	const numLowerUpper = (length: number) => {
 		if (length < 7) {
@@ -444,7 +444,7 @@ export function generatePasswordScore(password) {
 				strength: 'lowest',
 				score: 0,
 				entropy
-			}
+			};
 		}
 		if (length < 8) {
 			return {
@@ -455,7 +455,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 9) {
 			return {
@@ -466,7 +466,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 10) {
 			return {
@@ -477,7 +477,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 11) {
 			return {
@@ -488,7 +488,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 12) {
 			return {
@@ -499,7 +499,7 @@ export function generatePasswordScore(password) {
 				strength: 'medium',
 				score: 2,
 				entropy
-			}
+			};
 		}
 		if (length < 13) {
 			return {
@@ -510,7 +510,7 @@ export function generatePasswordScore(password) {
 				strength: 'medium',
 				score: 2,
 				entropy
-			}
+			};
 		}
 		if (length < 14) {
 			return {
@@ -521,7 +521,7 @@ export function generatePasswordScore(password) {
 				strength: 'medium',
 				score: 2,
 				entropy
-			}
+			};
 		}
 		if (length < 15) {
 			return {
@@ -532,7 +532,7 @@ export function generatePasswordScore(password) {
 				strength: 'high',
 				score: 3,
 				entropy
-			}
+			};
 		}
 		if (length < 16) {
 			return {
@@ -543,7 +543,7 @@ export function generatePasswordScore(password) {
 				strength: 'high',
 				score: 3,
 				entropy
-			}
+			};
 		}
 		if (length < 17) {
 			return {
@@ -554,7 +554,7 @@ export function generatePasswordScore(password) {
 				strength: 'highest',
 				score: 4,
 				entropy
-			}
+			};
 		}
 		if (length < 18) {
 			return {
@@ -565,7 +565,7 @@ export function generatePasswordScore(password) {
 				strength: 'highest',
 				score: 4,
 				entropy
-			}
+			};
 		}
 		if (length < 19) {
 			return {
@@ -576,7 +576,7 @@ export function generatePasswordScore(password) {
 				strength: 'highest',
 				score: 4,
 				entropy
-			}
+			};
 		}
 		return {
 			password,
@@ -586,8 +586,8 @@ export function generatePasswordScore(password) {
 			strength: 'highest',
 			score: 4,
 			entropy
-		}
-	}
+		};
+	};
 	// Numbers, upper and lowercase letters, symbols
 	const numLowerUpperSym = (length: number) => {
 		if (length < 6) {
@@ -599,7 +599,7 @@ export function generatePasswordScore(password) {
 				strength: 'lowest',
 				score: 0,
 				entropy
-			}
+			};
 		}
 		if (length < 7) {
 			return {
@@ -610,7 +610,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 8) {
 			return {
@@ -621,7 +621,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 9) {
 			return {
@@ -632,7 +632,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 10) {
 			return {
@@ -643,7 +643,7 @@ export function generatePasswordScore(password) {
 				strength: 'low',
 				score: 1,
 				entropy
-			}
+			};
 		}
 		if (length < 11) {
 			return {
@@ -654,7 +654,7 @@ export function generatePasswordScore(password) {
 				strength: 'medium',
 				score: 2,
 				entropy
-			}
+			};
 		}
 		if (length < 12) {
 			return {
@@ -665,7 +665,7 @@ export function generatePasswordScore(password) {
 				strength: 'medium',
 				score: 2,
 				entropy
-			}
+			};
 		}
 		if (length < 13) {
 			return {
@@ -676,7 +676,7 @@ export function generatePasswordScore(password) {
 				strength: 'medium',
 				score: 2,
 				entropy
-			}
+			};
 		}
 		if (length < 14) {
 			return {
@@ -687,7 +687,7 @@ export function generatePasswordScore(password) {
 				strength: 'high',
 				score: 3,
 				entropy
-			}
+			};
 		}
 		if (length < 15) {
 			return {
@@ -698,7 +698,7 @@ export function generatePasswordScore(password) {
 				strength: 'high',
 				score: 3,
 				entropy
-			}
+			};
 		}
 		if (length < 16) {
 			return {
@@ -709,7 +709,7 @@ export function generatePasswordScore(password) {
 				strength: 'high',
 				score: 3,
 				entropy
-			}
+			};
 		}
 		if (length < 17) {
 			return {
@@ -720,7 +720,7 @@ export function generatePasswordScore(password) {
 				strength: 'highest',
 				score: 4,
 				entropy
-			}
+			};
 		}
 		if (length < 18) {
 			return {
@@ -731,7 +731,7 @@ export function generatePasswordScore(password) {
 				strength: 'highest',
 				score: 4,
 				entropy
-			}
+			};
 		}
 		if (length < 19) {
 			return {
@@ -742,7 +742,7 @@ export function generatePasswordScore(password) {
 				strength: 'highest',
 				score: 4,
 				entropy
-			}
+			};
 		}
 		return {
 			password,
@@ -752,12 +752,12 @@ export function generatePasswordScore(password) {
 			strength: 'highest',
 			score: 4,
 			entropy
-		}
-	}
+		};
+	};
 
 	// ✅ only numbers 🔐 -1
 	if (ONLY_NUMBERS.test(password)) {
-		return numbers(String(password).length)
+		return numbers(String(password).length);
 	}
 	// ✅ only lower 🔐 0
 	// ✅ only upper 🔐 0
@@ -767,7 +767,7 @@ export function generatePasswordScore(password) {
 		ONLY_UPPERCASE.test(password) ||
 		ONLY_SYMBOLS.test(password)
 	) {
-		return lower(String(password).length)
+		return lower(String(password).length);
 	}
 	// ✅ lower + numbers 🔐 1
 	// ✅ upper + numbers 🔐 1
@@ -777,7 +777,7 @@ export function generatePasswordScore(password) {
 		(UPPERCASE.test(password) && NUMBERS.test(password)) ||
 		(SYMBOLS.test(password) && NUMBERS.test(password))
 	) {
-		return lowerUpper(String(password).length)
+		return lowerUpper(String(password).length);
 	}
 	// ✅ lower + symbols 🔐 2
 	// ✅ upper + symbols 🔐 2
@@ -787,7 +787,7 @@ export function generatePasswordScore(password) {
 		(UPPERCASE.test(password) && SYMBOLS.test(password)) ||
 		(UPPERCASE.test(password) && LOWERCASE.test(password))
 	) {
-		return lowerUpper(String(password).length)
+		return lowerUpper(String(password).length);
 	}
 	// ✅ lower + upper + numbers 🔐 3
 	// ✅ lower + symbols + numbers 🔐 3
@@ -799,7 +799,7 @@ export function generatePasswordScore(password) {
 		(UPPERCASE.test(password) && SYMBOLS.test(password) && NUMBERS.test(password)) ||
 		(LOWERCASE.test(password) && UPPERCASE.test(password) && SYMBOLS.test(password))
 	) {
-		return numLowerUpper(String(password).length)
+		return numLowerUpper(String(password).length);
 	}
 	// lower + upper + numbers + symbols 🔐 4
 	if (
@@ -808,6 +808,6 @@ export function generatePasswordScore(password) {
 		NUMBERS.test(password) &&
 		SYMBOLS.test(password)
 	) {
-		return numLowerUpperSym(String(password).length)
+		return numLowerUpperSym(String(password).length);
 	}
 }

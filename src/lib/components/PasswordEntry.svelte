@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition'
-	import { deletePassword } from '$lib/stores/history'
-	import { copyToClipboard } from '$lib/actions/copy_to_clipboard'
-	import { addToast } from '$lib/stores/toast'
+	import { fly } from 'svelte/transition';
+	import { deletePassword } from '$lib/stores/history';
+	import { copyToClipboard } from '$lib/actions/copy_to_clipboard';
+	import { addToast } from '$lib/stores/toast';
 
-	export let password: string, generated: string
+	export let password: string, generated: string;
 
-	let isPasswordShown = false
+	let isPasswordShown = false;
 </script>
 
 <div
@@ -15,7 +15,9 @@
 	class="hover:bg-neutral-800 rounded-md flex mx-2 px-2 py-1.5 mt-3 justify-between items-center"
 >
 	<div class="flex flex-col">
-		<span class="w-44 overflow-hidden text-ellipsis">{!isPasswordShown ? '••••••••••••' : password}</span>
+		<span class="w-44 overflow-hidden text-ellipsis"
+			>{!isPasswordShown ? '••••••••••••' : password}</span
+		>
 		<span class="w-44 text-sm text-neutral-300 whitespace-nowrap">Generated on {generated}</span>
 	</div>
 	<div class="flex gap-2">

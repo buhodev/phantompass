@@ -5,5 +5,5 @@ export function generateDate() {
 		hour: 'numeric',
 		minute: 'numeric',
 		hour12: false
-	}).format(new Date())
+	}).format(new Date());
 }

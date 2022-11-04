@@ -1297,4 +1297,4 @@ export const SHORT_WORDLIST = {
 	6664: 'zippy',
 	6665: 'zone',
 	6666: 'zoom'
-}
+};

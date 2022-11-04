@@ -1,17 +1,17 @@
 <script>
-	import { spring } from 'svelte/motion'
+	import { spring } from 'svelte/motion';
 
-	let svgRef
+	let svgRef;
 
 	function screenToSVG({ x: screenX, y: screenY }) {
-		const svg = svgRef
-		var p = svg.createSVGPoint()
-		p.x = screenX
-		p.y = screenY
-		return p.matrixTransform(svg.getScreenCTM().inverse())
+		const svg = svgRef;
+		var p = svg.createSVGPoint();
+		p.x = screenX;
+		p.y = screenY;
+		return p.matrixTransform(svg.getScreenCTM().inverse());
 	}
 
-	let coords = spring({ x: 0, y: 0 }, { stiffness: 0.05, damping: 0.7 })
+	let coords = spring({ x: 0, y: 0 }, { stiffness: 0.05, damping: 0.7 });
 </script>
 
 <svelte:window on:mousemove={(e) => coords.set(screenToSVG({ x: e.clientX, y: e.clientY }))} />

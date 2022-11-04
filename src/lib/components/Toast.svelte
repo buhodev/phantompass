@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte'
-	import { fly } from 'svelte/transition'
+	import { createEventDispatcher } from 'svelte';
+	import { fly } from 'svelte/transition';
 
-	const dispatch = createEventDispatcher()
+	const dispatch = createEventDispatcher();
 
-	export let type: 'error' | 'success' | 'info' = 'info'
-	export let dismissible = false
+	export let type: 'error' | 'success' | 'info' = 'info';
+	export let dismissible = false;
 </script>
 
 <article
@@ -15,7 +15,7 @@
 	class:bg-red-600={type == 'error'}
 	class:bg-green-600={type == 'success'}
 	role="alert"
-	transition:fly={{y: 10, duration: 300, opacity: 0}}
+	transition:fly={{ y: 10, duration: 300, opacity: 0 }}
 >
 	<slot />
 

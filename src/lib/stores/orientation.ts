@@ -1,17 +1,17 @@
 // borrowed from <https://github.com/simeydotme/pokemon-cards-css>
 
-import { readable } from 'svelte/store'
+import { readable } from 'svelte/store';
 
 const getRawOrientation = function (e: DeviceOrientationEvent) {
 	if (!e) {
-		return { alpha: 0, beta: 0, gamma: 0 }
+		return { alpha: 0, beta: 0, gamma: 0 };
 	} else {
-		return { alpha: e.alpha, beta: e.beta, gamma: e.gamma }
+		return { alpha: e.alpha, beta: e.beta, gamma: e.gamma };
 	}
-}
+};
 
 const getOrientationObject = (e: DeviceOrientationEvent) => {
-	const orientation = getRawOrientation(e)
+	const orientation = getRawOrientation(e);
 	return {
 		absolute: orientation,
 		relative: {
@@ -19,35 +19,35 @@ const getOrientationObject = (e: DeviceOrientationEvent) => {
 			beta: orientation.beta - baseOrientation.beta,
 			gamma: orientation.gamma - baseOrientation.gamma
 		}
-	}
-}
+	};
+};
 
-let firstReading = true
-let baseOrientation = getRawOrientation()
+let firstReading = true;
+let baseOrientation = getRawOrientation();
 
 export const resetBaseOrientation = () => {
-	console.log('Resetting Base Orientation')
-	firstReading = true
-	baseOrientation = getRawOrientation()
-}
+	console.log('Resetting Base Orientation');
+	firstReading = true;
+	baseOrientation = getRawOrientation();
+};
 
 export const orientation = readable(getOrientationObject(), function start(set) {
 	// https://developer.mozilla.org/en-US/docs/Web/API/Window/ondeviceorientation
 	const handleOrientation = function (e) {
 		if (firstReading) {
-			firstReading = false
-			baseOrientation = getRawOrientation(e)
+			firstReading = false;
+			baseOrientation = getRawOrientation(e);
 		}
 
-		const o = getOrientationObject(e)
+		const o = getOrientationObject(e);
 
-		set(o)
-	}
+		set(o);
+	};
 
-	window?.addEventListener('deviceorientation', handleOrientation, true)
+	window?.addEventListener('deviceorientation', handleOrientation, true);
 
 	return function stop() {
-		window?.removeEventListener('deviceorientation', handleOrientation, true)
-		console.log('Stopping Orientation Tracking')
-	}
-})
+		window?.removeEventListener('deviceorientation', handleOrientation, true);
+		console.log('Stopping Orientation Tracking');
+	};
+});

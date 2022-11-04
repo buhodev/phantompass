@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let strength: 'lowest' | 'low' | 'medium' | 'high' | 'highest' = 'highest'
+	export let strength: 'lowest' | 'low' | 'medium' | 'high' | 'highest' = 'highest';
 
 	let messages = {
 		lowest: 'Highly insecure',
@@ -7,7 +7,7 @@
 		medium: 'Barely secure',
 		high: 'Secure',
 		highest: 'Highly secure'
-	}
+	};
 </script>
 
 <div
