@@ -6,6 +6,9 @@ specifiers:
   '@sveltejs/kit': next
   '@typescript-eslint/eslint-plugin': ^5.27.0
   '@typescript-eslint/parser': ^5.27.0
+  '@zxcvbn-ts/core': ^2.1.0
+  '@zxcvbn-ts/language-common': ^2.0.1
+  '@zxcvbn-ts/language-en': ^2.1.0
   autoprefixer: ^10.4.7
   eslint: ^8.16.0
   eslint-config-prettier: ^8.3.0
@@ -21,6 +24,13 @@ specifiers:
   tslib: ^2.3.1
   typescript: ^4.7.4
   vite: ^3.1.0
+  zxcvbn: ^4.4.2
+
+dependencies:
+  '@zxcvbn-ts/core': 2.1.0
+  '@zxcvbn-ts/language-common': 2.0.1
+  '@zxcvbn-ts/language-en': 2.1.0
+  zxcvbn: 4.4.2
 
 devDependencies:
   '@playwright/test': 1.25.0
@@ -438,6 +448,18 @@ packages:
       - encoding
       - supports-color
     dev: true
+
+  /@zxcvbn-ts/core/2.1.0:
+    resolution: {integrity: sha512-doxol9xrO7LgyVJhguXe7vO0xthnIYmsOKoDwrLg0Ho2kkpQaVtM+AOQw+BkEiKIqNg1V48eUf4/cTzMElXdiA==}
+    dev: false
+
+  /@zxcvbn-ts/language-common/2.0.1:
+    resolution: {integrity: sha512-P+v5MA/UNc9nb3FEOEoDgTyIGQc2vLc6m04pdf5YyuNOzrL0iNANhECk2TUp62JbrjouJVodqhMH0j1a8/24Bg==}
+    dev: false
+
+  /@zxcvbn-ts/language-en/2.1.0:
+    resolution: {integrity: sha512-I3n4AAbArjPAZtwCrk9MQnSrcj5+9rq8sic2rUU44fP5QaR17Vk8zDt61+R9dnP9ZRsj09aAUYML4Ash05qZjQ==}
+    dev: false
 
   /abbrev/1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
@@ -2406,3 +2428,7 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /zxcvbn/4.4.2:
+    resolution: {integrity: sha512-Bq0B+ixT/DMyG8kgX2xWcI5jUvCwqrMxSFam7m0lAf78nf04hv6lNCsyLYdyYTrCVMqNDY/206K7eExYCeSyUQ==}
+    dev: false
