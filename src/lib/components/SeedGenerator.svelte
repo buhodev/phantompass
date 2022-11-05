@@ -19,7 +19,7 @@
 		readonly
 		class="p-2 flex items-center break-all h-24 justify-center text-white rounded-md bg-neutral-900/40 border border-neutral-700 backdrop-blur-sm text-2xl text-center font-mono overflow-x-auto"
 	/>
-	<progress class="block w-full"  value={$progress} />
+	<progress class="block w-full" value={$progress} />
 	<div class="mt-4 rounded-md overflow-hidden h-[300px] w-[300px]">
 		<Canvas bind:seed width={300} height={300} />
 	</div>
