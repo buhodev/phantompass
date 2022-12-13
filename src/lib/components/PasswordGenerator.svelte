@@ -278,16 +278,16 @@
 		</svg>
 	</button>
 
-	<div class="flex gap-0.5 items-center -mr-20">
+	<div class="flex gap-6 xs:gap-16 sm:gap-0.5 items-center sm:-mr-20">
 		<button
 			on:click={() => (view = 'generate')}
 			class:text-purple-500={view === 'generate'}
-			class="w-40 rounded-md py-1 hover:bg-neutral-800 font-medium">Password Generator</button
+			class="w-16 sm:w-40 rounded-md py-1 hover:bg-neutral-800 font-medium"><span class="hidden sm:inline">Password</span> Generator</button
 		>
 		<button
 			on:click={() => (view = 'check')}
 			class:text-purple-500={view === 'check'}
-			class="w-40 rounded-md py-1 hover:bg-neutral-800 font-medium">Password Checker</button
+			class="w-16 sm:w-40 rounded-md py-1 hover:bg-neutral-800 font-medium"><span class="hidden sm:inline">Password</span> Checker</button
 		>
 	</div>
 
@@ -323,7 +323,7 @@
 </header>
 
 <div class="relative container max-w-full overflow-y-scroll">
-	<main class="max-w-md flex flex-col mx-auto text-white pb-8">
+	<main class="max-w-md flex flex-col mx-auto text-white pb-8 px-4 xs:px-0">
 		{#if view === 'generate'}
 			<!-- Password -->
 			<button
@@ -509,7 +509,7 @@
 			<div class="relative mt-8  flex items-center justify-start font-bold font-mono text-3xl">
 				<input
 					type="text"
-					placeholder="Enter a password to check its strength"
+					placeholder="Enter password to check strength"
 					bind:value={userPassword}
 					class="h-12 py-1 pl-4 pr-10 bg-black/20 border border-white/20 w-full placeholder:text-lg rounded-md"
 				/>
