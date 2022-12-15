@@ -34,28 +34,30 @@
 </script>
 
 <div
-	class="max-w-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center mx-auto text-white"
+	class="max-w-5xl px-4 mt-10 md:mt-0 md:px-0 md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 flex flex-col items-center mx-auto text-white"
 >
 	{#if ready}
 		<h1
 			id="buhodev"
 			transition:fly={{ y: -50, duration: 700 }}
-			class="block text-6xl text-center font-bold"
+			class="block text-3xl md:text-6xl text-center font-bold"
 		>
 			Unlock the power of world-class password generation
 		</h1>
 
-		<div class="flex justify-between gap-4 mt-8">
+		<div class="flex flex-col md:flex-row justify-between gap-4 mt-8">
 			{#each FEATURE_CARDS as { title, description, svgSrc, webpSrc }, i}
 				<div
 					transition:fly={{ y: -50, duration: 500, delay: 200 * (i + 1) - i * 50 }}
-					class:mt-12={i % 2 == 1}
-					class="group shadow-lg hover:scale-[1.005] hover:shadow-xl transition-all border border-b-0 flex flex-col justify-center h-44 w-48 border-white/10 bg-black/30 backdrop-blur-xl rounded-md p-4"
+					class:space={i % 2 == 1}
+					class="group shadow-lg hover:scale-[1.005] hover:shadow-xl transition-all border border-b-0 flex md:flex-col md:justify-center md:h-44 md:w-48 border-white/10 bg-black/30 backdrop-blur-xl rounded-md p-4"
 				>
 					<img src={svgSrc} class="group-hover:hidden block w-10 mb-2" alt="" />
 					<img src={webpSrc} class="group-hover:block hidden w-10 mb-2" alt="" />
-					<h2 class="font-bold">{title}</h2>
-					<p>{description}</p>
+					<div class="ml-2 md:ml-0">
+						<h2 class="font-bold">{title}</h2>
+						<p>{description}</p>
+					</div>
 				</div>
 			{/each}
 		</div>
@@ -79,6 +81,12 @@
 	h1 {
 		text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.75);
 		font-family: Coanda, sans-serif;
+	}
+
+	@media (min-width: 768px) {
+		.space {
+			margin-top: 3rem;
+		}
 	}
 
 	.primary-button {
