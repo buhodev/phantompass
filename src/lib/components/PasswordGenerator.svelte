@@ -290,16 +290,16 @@
 		</svg>
 	</button>
 
-	<div class="flex gap-6 xs:gap-16 sm:gap-0.5 items-center sm:-mr-20">
+	<div class="flex gap-4 xs:gap-12 sm:gap-0.5 items-center sm:-mr-20">
 		<button
 			on:click={() => (view = 'generate')}
 			class:text-purple-500={view === 'generate'}
-			class="w-16 sm:w-40 rounded-md py-1 hover:bg-neutral-800 font-medium"><span class="hidden sm:inline">Password</span> Generator</button
+			class="xs:w-24 px-2 sm:w-44 rounded-md py-1 hover:bg-neutral-800 font-medium"><span class="hidden sm:inline">Password</span> Generator</button
 		>
 		<button
 			on:click={() => (view = 'check')}
 			class:text-purple-500={view === 'check'}
-			class="w-16 sm:w-40 rounded-md py-1 hover:bg-neutral-800 font-medium"><span class="hidden sm:inline">Password</span> Checker</button
+			class="xs:w-20 px-2 sm:w-44 rounded-md py-1 hover:bg-neutral-800 font-medium"><span class="hidden sm:inline">Password</span> Checker</button
 		>
 	</div>
 
