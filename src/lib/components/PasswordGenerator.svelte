@@ -27,6 +27,7 @@
 	import BarChart from '$lib/components/BarChart.svelte';
 	import { generatePasswordScore } from '$lib/helpers/generate_password_score';
 	import SeedGenerator from '$lib/components/SeedGenerator.svelte';
+	import { onMount } from 'svelte';
 
 	let isCopied = false;
 	let animate = true;
@@ -254,7 +255,18 @@
 	let userPasswordScore;
 
 	let easterEggState = { lastPassword: view === 'generate' ? password : userPassword, count: 1 };
+
+	let innerWidth: number;
+
+	onMount(() => {
+		if(innerWidth < 1100) {
+			isHistoryOpen.set(false)
+			isSidebarOpen.set(false)
+		}
+	})
 </script>
+
+<svelte:window bind:innerWidth />
 
 <Toasts />
 
